@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static 'styles.css' %}/>
+    <title>GRANDTOURISM INDEX</title>
+</head>
+<body>
+<script>let pks = [];</script>
+    <header>
+        <h1>GRANDTOURISM</h1>
+        <ul>
+            <li><a href="/">INDEX</a></li>
+            <li><a href="about">ABOUT</a></li>
+            <li><a href="info">INFO</a></li>
+        </ul>
+    </header>
+    <main>
+        <section class="infomenu">
+            <a href="{{model}}_create">CR</a>
+            <a href="#" id="upd">UPD</a>
+            <a href="#" id="dl">DL</a>
+        </section>
+        <table>
+            {% for object in page_obj %}
+                {% if forloop.first %}
+                    {% with keys=object.items %}
+                        <thead>
+                            <tr>
+                                {% for key in keys %}
+                                    {% if forloop.first %}
+                                    {% else %}
+                                        <td>{{key|upper}}</td>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td colspan={{keys|length}}>
+                                    {% if page_obj.has_previous %}
+                                        <a href="?page=1">&laquo; first</a>
+                                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                                    {% endif %}
+
+                                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+
+                                    {% if page_obj.has_next %}
+                                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for object in page_obj %}
+                            {% with values=object.items.values %}
+                            <tr>
+                                {% for element in values %}
+                                    {% if forloop.first %}
+                                        <script>pks.push("{{ object.passport }}");</script>
+                                    {% else %}
+                                        <td onclick="func({{forloop.parentloop.counter0}})"><div>{{ element }}</div></td>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>        
+                            {% endwith %}    
+                            {% empty %}
+                                <tr>
+                                    <td colspan="7">NO INFO FOUND</td>
+                                </tr>
+                        {% endfor %}
+                        </tbody>
+                    {% endwith %}
+                {% endif %}
+            {% empty %}
+            <td colspan="7">NO INFO FOUND</td>
+            {% endfor %}
+        </table>
+    </main>
+    <footer>
+        ДАННЫЙ САЙТ ПРИНАДЛЕЖИТ СТУДЕНТУ Т. И. В. И ПОЛНОСТЬЮ ПОДЧИНЯЕТСЯ ТЕКУЩЕМУ ЗАКОНОДАТЕЛЬСТВУ РОССИЙСКОЙ ФЕДЕРАЦИИ. ВСЕ ДАННЫЕ БЫЛИ СОЗДАНЫ ВРУЧНУЮ И НЕ НЕСУТ В СЕБЕ НИКАКОЙ ЛИЧНОЙ ИНФОРМАЦИИ О КАКИХ-ЛИБО ИНДИВИДАХ В РАМКАХ ПЛАНЕТЫ ЗЕМЛЯ.
+    </footer>
+    <script>
+        function func(index){
+            const upd = document.getElementById("upd");
+            const dl = document.getElementById("dl");
+            
+
+            upd.href = "{{model}}_update/"+pks[index];
+            dl.href = "{{model}}_delete/"+pks[index];
+        }
+    </script>
+</body>
+</html>

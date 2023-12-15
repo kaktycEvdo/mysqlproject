@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static 'styles.css' %}/>
+    <title>GRANDTOURISM INDEX</title>
+</head>
+<body>
+    <header>
+        <h1>GRANDTOURISM</h1>
+        <ul>
+            <li><a href="/">INDEX</a></li>
+            <li><a href="about">ABOUT</a></li>
+            <li><a href="info">INFO</a></li>
+        </ul>
+    </header>
+    <main>
+        <section class="links">
+            <a href="personas_info"><div>PERSONAS: <i class="greentext">{{ personas_count }}</i></div></a>
+            <a href="partners_info"><div>PARTNERS: <i class="greentext">{{ partners_count }}</i></div></a>
+            <a href="contracts_info"><div>CONTRACTS: <i class="greentext">{{ contracts_count }}</i></div></a>
+            <a href="workers_info"><div>WORKERS: <i class="greentext">{{ workers_count }}</i></div></a>
+            <a href="clients_info"><div>CLIENTS: <i class="greentext">{{ clients_count }}</i></div></a>
+        </section>
+    </main>
+    <footer>
+        ДАННЫЙ САЙТ ПРИНАДЛЕЖИТ СТУДЕНТУ Т. И. В. И ПОЛНОСТЬЮ ПОДЧИНЯЕТСЯ ТЕКУЩЕМУ ЗАКОНОДАТЕЛЬСТВУ РОССИЙСКОЙ ФЕДЕРАЦИИ. ВСЕ ДАННЫЕ БЫЛИ СОЗДАНЫ ВРУЧНУЮ И НЕ НЕСУТ В СЕБЕ НИКАКОЙ ЛИЧНОЙ ИНФОРМАЦИИ О КАКИХ-ЛИБО ИНДИВИДАХ В РАМКАХ ПЛАНЕТЫ ЗЕМЛЯ.
+    </footer>
+</body>
+</html>
