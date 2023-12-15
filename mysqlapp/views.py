@@ -102,6 +102,8 @@ class paCreateView(CreateView):
     template_name = "create.html"
     model = Partner
 
+    fields = ["naming", "worktime_beginning", "worktime_end", "extra_info"]
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['model'] = "partner"
@@ -114,6 +116,8 @@ class paCreateView(CreateView):
 class clCreateView(CreateView):
     template_name = "create.html"
     model = Client
+
+    fields = ["inn", "snils", "person_data"]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -128,6 +132,8 @@ class coCreateView(CreateView):
     template_name = "create.html"
     model = Contract
 
+    fields = ["partners", "client_code", "worker_code", "service", "dateofupbringing"]
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['model'] = "contract"
@@ -140,6 +146,8 @@ class coCreateView(CreateView):
 class wCreateView(CreateView):
     template_name = "create.html"
     model = Worker
+
+    fields = ["specialization", "experience", "person_data"]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -170,6 +178,8 @@ class paUpdateView(UpdateView):
     template_name = "update.html"
     model = Partner
 
+    fields = ["naming", "worktime_beginning", "worktime_end", "extra_info"]
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['model'] = "partner"
@@ -182,6 +192,8 @@ class paUpdateView(UpdateView):
 class clUpdateView(UpdateView):
     template_name = "update.html"
     model = Client
+
+    fields = ["inn", "snils", "person_data"]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -196,6 +208,8 @@ class coUpdateView(UpdateView):
     template_name = "update.html"
     model = Contract
 
+    fields = ["partners", "client_code", "worker_code", "service", "dateofupbringing"]
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['model'] = "contract"
@@ -208,6 +222,8 @@ class coUpdateView(UpdateView):
 class wUpdateView(UpdateView):
     template_name = "update.html"
     model = Worker
+
+    fields = ["specialization", "experience", "person_data"]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

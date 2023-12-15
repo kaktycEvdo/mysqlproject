@@ -60,7 +60,7 @@
                             <tr>
                                 {% for element in values %}
                                     {% if forloop.first %}
-                                        <script>pks.push("{{ object.passport }}");</script>
+                                        <script>pks.push("{{ object.pk }}");</script>
                                     {% else %}
                                         <td onclick="func({{forloop.parentloop.counter0}})"><div>{{ element }}</div></td>
                                     {% endif %}
